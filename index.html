@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="fr"</div>>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DR Real Estate - Gestion Locative| Côte d'Azur</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-red: #DC143C;
+            --gold: #D4AF37;
+            --dark: #1a1a1a;
+            --light-gray: #f8f9fa;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+        }
+        
+        .font-playfair {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 50%, #ffffff 100%);
+        }
+        
+        .luxury-shadow {
+            box-shadow: 0 20px 60px rgba(220, 20, 60, 0.1);
+        }
+        
+        .hover-luxury {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .hover-luxury:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 30px 80px rgba(220, 20, 60, 0.15);
+        }
+        
+        .btn-premium {
+            background: linear-gradient(135deg, var(--primary-red) 0%, #b91c5c 100%);
+            border: none;
+            padding: 16px 40px;
+            border-radius: 50px;
+            color: white;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 30px rgba(220, 20, 60, 0.3);
+        }
+        
+        .btn-premium:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(220, 20, 60, 0.4);
+            background: linear-gradient(135deg, #b91c5c 0%, var(--primary-red) 100%);
+        }
+        
+        .logo-dr {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--primary-red);
+            font-family: 'Playfair Display', serif;
+            text-shadow: 2px 2px 4px rgba(220, 20, 60, 0.1);
+        }
+        
+        .section-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent 0%, var(--primary-red) 50%, transparent 100%);
+            margin: 60px 0;
+        }
+        
+        .language-selector {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .language-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            min-width: 160px;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+        }
+        
+        .language-selector:hover .language-dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .service-card {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(220, 20, 60, 0.1);
+        }
+        
+        .service-card:hover {
+            border-color: var(--primary-red);
+            transform: translateY(-5px);
+        }
+        
+        .icon-luxury {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-red), #b91c5c);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            margin: 0 auto 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .logo-dr {
+                font-size: 36px;
+            }
+            
+            .service-card {
+                padding: 20px;
+            }
+            
+            .btn-premium {
+                padding: 14px 30px;
+                font-size: 14px;
+            }
+        }
+        
+        .animate-fadeIn {
+            animation: fadeIn 1s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .content-section {
+            margin-bottom: 80px;
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(248,249,250,0.9) 100%);
+            padding: 100px 0;
+        }
+    </style>
+</head>
+<body class="bg-white">
+
+<!-- Header -->
+<header class="fixed w-full top-0 bg-white/95 backdrop-blur-md z-50 shadow-sm">
+    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+        <div class="flex items-center space-x-4">
+            <div class="logo-dr">DR</div>
+            <div>
+                <h1 class="text-xl font-bold text-gray-800">Real Estate</h1>
+                <p class="text-sm text-gray-600">Daisy Rossi & Associés</p>
+            </div>
+        </div>
+        
+        <div class="language-selector">
+            <button class="flex items-center space-x-2 bg-gray-50 px-4 py-2 rounded-lg hover:bg-gray-100 transition">
+                <span id="currentLang">🇫🇷 FR</span>
+                <i class="fas fa-chevron-down text-xs"></i>
+            </button>
+            <div class="language-dropdown">
+                <a href="#" onclick="changeLanguage('fr')" class="flex items-center px-4 py-3 hover:bg-gray-50 border-b">
+                    <span>🇫🇷 Français</span>
+                </a>
+                <a href="#" onclick="changeLanguage('en')" class="flex items-center px-4 py-3 hover:bg-gray-50 border-b">
+                    <span>🇬🇧 English</span>
+                </a>
+                <a href="#" onclick="changeLanguage('it')" class="flex items-center px-4 py-3 hover:bg-gray-50 border-b">
+                    <span>🇮🇹 Italiano</span>
+                </a>
+                <a href="#" onclick="changeLanguage('ru')" class="flex items-center px-4 py-3 hover:bg-gray-50">
+                    <span>🇷🇺 Русский</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Hero Section -->
+<section class="hero-section animate-fadeIn" style="margin-top: 80px;">
+    <div class="container mx-auto px-6 text-center">
+        <div class="max-w-4xl mx-auto">
+            <h1 class="font-playfair text-5xl md:text-6xl font-bold text-gray-900 mb-6" id="heroTitle">
+                Gestion Locative 
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-700 mb-8" id="heroSubtitle">
+                Votre partenaire de confiance sur la Côte d'Azur
+            </p>
+            <div class="flex flex-col md:flex-row gap-4 justify-center items-center mb-12">
+                <div class="bg-red-50 px-6 py-3 rounded-full border border-red-200">
+                    <span class="text-red-600 font-semibold" id="offer1">✓ Roquebrune-Cap-Martin  </span>
+                </div>
+                <div class="bg-red-50 px-6 py-3 rounded-full border border-red-200">
+                    <span class="text-red-600 font-semibold" id="offer2">✓ Menton </span>
+                </div>
+                <div class="bg-red-50 px-6 py-3 rounded-full border border-red-200">
+                    <span class="text-red-600 font-semibold" id="offer3">✓ Côted'Azur... </span>
+                </div>
+            </div>
+            <a href="tel:+33698273475" class="btn-premium inline-flex items-center space-x-3 text-decoration-none" id="quoteButton">
+                <i class="fas fa-phone"></i>
+                <span>Demander un devis gratuit</span>
+            </a>
+            <p class="text-sm text-gray-500 mt-4" id="phoneNumber">
+                📞 +33 6 98 27 34 75
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Services Section -->
+<section class="content-section py-20 bg-gray-50">
+    <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+            <h2 class="font-playfair text-4xl font-bold text-gray-900 mb-4" id="servicesTitle">
+                Nos Services de Gestion Locative
+            </h2>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto" id="servicesSubtitle">
+                Une gestion humaine, sur-mesure et réactive avec une expertise locale pointue
+            </p>
+            <div class="section-divider"></div>
+        </div>
+        
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="service-card hover-luxury">
+                <div class="icon-luxury">
+                    <i class="fas fa-search-dollar"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-3 text-center" id="service1Title">
+                    Estimation & Valorisation
+                </h3>
+                <p class="text-gray-600 text-center" id="service1Desc">
+                    Estimation précise et valorisation optimale de votre bien
+                </p>
+            </div>
+            
+            <div class="service-card hover-luxury">
+                <div class="icon-luxury">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-3 text-center" id="service2Title">
+                    Sélection Locataires
+                </h3>
+                <p class="text-gray-600 text-center" id="service2Desc">
+                    Sélection rigoureuse basée sur étude de solvabilité et garanties
+                </p>
+            </div>
+            
+            <div class="service-card hover-luxury">
+                <div class="icon-luxury">
+                    <i class="fas fa-file-contract"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-3 text-center" id="service3Title">
+                    Rédaction du Bail
+                </h3>
+                <p class="text-gray-600 text-center" id="service3Desc">
+                    État des lieux conformes à la législation, réalisés avec soin
+                </p>
+            </div>
+            
+            <div class="service-card hover-luxury">
+                <div class="icon-luxury">
+                    <i class="fas fa-camera"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-3 text-center" id="service4Title">
+                    Marketing Premium
+                </h3>
+                <p class="text-gray-600 text-center" id="service4Desc">
+                    Photos professionnelles, diffusion sur les meilleurs portails
+                </p>
+            </div>
+            
+            <div class="service-card hover-luxury">
+                <div class="icon-luxury">
+                    <i class="fas fa-calculator"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-3 text-center" id="service5Title">
+                    Gestion Financière
+                </h3>
+                <p class="text-gray-600 text-center" id="service5Desc">
+                    Appels de loyers, quittances, relances et suivi comptable
+                </p>
+            </div>
+            
+            <div class="service-card hover-luxury">
+                <div class="icon-luxury">
+                    <i class="fas fa-tools"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-3 text-center" id="service6Title">
+                    Suivi Technique
+                </h3>
+                <p class="text-gray-600 text-center" id="service6Desc">
+                    Gestion des travaux, dépannages et révision annuelle du loyer
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- About Section -->
+<section class="content-section py-20 bg-white">
+    <div class="container mx-auto px-6">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="font-playfair text-4xl font-bold text-gray-900 mb-6" id="aboutTitle">
+                Qui sommes-nous ?
+            </h2>
+            <p class="text-lg text-gray-600 mb-8" id="aboutText">
+                Daisy Rossi Immobilier, agence indépendante à Roquebrune-Cap-Martin, est votre partenaire de confiance pour la gestion de biens sur la Côte d'Azur.
+            </p>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mt-12">
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-heart text-red-600 text-xl"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 mb-2" id="value1Title">Gestion Humaine</h3>
+                    <p class="text-gray-600 text-sm" id="value1Desc">Sur-mesure et réactive</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-map-marker-alt text-red-600 text-xl"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 mb-2" id="value2Title">Expertise Locale</h3>
+                    <p class="text-gray-600 text-sm" id="value2Desc">Connaissance pointue</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-handshake text-red-600 text-xl"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 mb-2" id="value3Title">Réseau Pro</h3>
+                    <p class="text-gray-600 text-sm" id="value3Desc">Artisans, experts, juristes</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-eye text-red-600 text-xl"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 mb-2" id="value4Title">Transparence</h3>
+                    <p class="text-gray-600 text-sm" id="value4Desc">Communication totale</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Special Offer Section -->
+<section class="content-section py-20 bg-gradient-to-r from-red-50 to-pink-50">
+    <div class="container mx-auto px-6">
+        <div class="max-w-4xl mx-auto text-center">
+            <div class="bg-red-600 text-white px-6 py-2 rounded-full inline-block mb-6">
+                <span class="font-semibold" id="specialBadge">⭐ OFFRE SPÉCIALE RENTRÉE 2025</span>
+            </div>
+            <h2 class="font-playfair text-3xl font-bold text-gray-900 mb-6" id="specialTitle">
+                Offre Spéciale - Valable jusqu'au 30 novembre 2025
+            </h2>
+            <p class="text-lg text-gray-700 mb-8" id="specialDescription">
+                Pour toute signature d'un mandat de location accompagné d'un mandat de gestion locative
+            </p>
+            <div class="bg-white rounded-2xl p-8 luxury-shadow">
+                <h3 class="text-xl font-bold text-gray-900 mb-6" id="specialIncluded">Tout inclus dans votre offre :</h3>
+                <div class="grid md:grid-cols-2 gap-4 text-left">
+                    <div class="flex items-center space-x-3">
+                        <i class="fas fa-check-circle text-red-600"></i>
+                        <span id="special1">Estimation précise et valorisation</span>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <i class="fas fa-check-circle text-red-600"></i>
+                        <span id="special2">Sélection rigoureuse des locataires</span>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <i class="fas fa-check-circle text-red-600"></i>
+                        <span id="special3">Rédaction du bail et état des lieux offerts </span>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <i class="fas fa-check-circle text-red-600"></i>
+                        <span id="special4">Photos professionnelles</span>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <i class="fas fa-check-circle text-red-600"></i>
+                        <span id="special5">Gestion administrative complète</span>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <i class="fas fa-check-circle text-red-600"></i>
+                        <span id="special6">Suivi technique et relation locataire</span>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <i class="fas fa-check-circle text-red-600"></i>
+                        <span id="special7">Frais d'entremise et de négociation offerts</span>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-8">
+                <a href="tel:+33698273475" class="btn-premium inline-flex items-center space-x-3 text-decoration-none">
+                    <i class="fas fa-phone"></i>
+                    <span id="specialButton">Profiter de l'offre maintenant</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section class="content-section py-20 bg-gray-900 text-white">
+    <div class="container mx-auto px-6">
+        <div class="max-w-4xl mx-auto text-center mb-12">
+            <h2 class="font-playfair text-4xl font-bold mb-6" id="contactTitle">
+                Contactez-nous
+            </h2>
+            <p class="text-xl text-gray-300 mb-8" id="contactSubtitle">
+                Prêt à confier la gestion de votre bien à des experts ? Contactez-nous dès aujourd'hui pour un devis personnalisé.
+            </p>
+        </div>
+        
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="text-center">
+                <div class="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-phone text-white text-xl"></i>
+                </div>
+                <h3 class="font-semibold mb-2" id="phoneLabel">Téléphone</h3>
+                <a href="tel:+33698273475" class="text-red-400 hover:text-red-300">+33 6 98 27 34 75</a>
+            </div>
+            
+            <div class="text-center">
+                <div class="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-envelope text-white text-xl"></i>
+                </div>
+                <h3 class="font-semibold mb-2">Email</h3>
+                <a href="mailto:daisy.rossi@daisy-rossi.com" class="text-red-400 hover:text-red-300">daisy.rossi@daisy-rossi.com</a>
+            </div>
+            
+            <div class="text-center">
+                <div class="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-map-marker-alt text-white text-xl"></i>
+                </div>
+                <h3 class="font-semibold mb-2" id="addressLabel">Adresse</h3>
+                <p class="text-gray-300">31 Avenue Paul Doumer <br>06190 Roquebrune-Cap-Martin</p>
+            </div>
+            
+            <div class="text-center">
+                <div class="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-globe text-white text-xl"></i>
+                </div>
+                <h3 class="font-semibold mb-2" id="websiteLabel">Site Web</h3>
+                <a href="https://daisy-rossi.com" target="_blank" class="text-red-400 hover:text-red-300">daisy-rossi.com</a>
+            </div>
+        </div>
+        
+        <div class="text-center mt-12">
+            <a href="tel:+33698273475" class="btn-premium inline-flex items-center space-x-3 text-decoration-none" id="finalButton">
+                <i class="fas fa-phone"></i>
+                <span>Appelez maintenant pour votre devis gratuit</span>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-black py-12">
+    <div class="container mx-auto px-6">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+            <div class="flex items-center space-x-4 mb-6 md:mb-0">
+                <div class="logo-dr text-white">DR</div>
+                <div class="text-white">
+                    <h3 class="text-lg font-bold">Real Estate</h3>
+                    <p class="text-gray-400 text-sm">Daisy Rossi & Associés</p>
+                </div>
+            </div>
+            
+            <div class="flex space-x-6">
+                <a href="https://www.instagram.com/" target="_blank" class="w-10 h-10 bg-red-600 rounded-full flex items-center justify-center hover:bg-red-700 transition">
+                    <i class="fab fa-instagram text-white"></i>
+                </a>
+                <a href="https://www.linkedin.com/company/daisy-rossi-immo/?viewAsMember=true" target="_blank" class="w-10 h-10 bg-red-600 rounded-full flex items-center justify-center hover:bg-red-700 transition">
+                    <i class="fab fa-linkedin-in text-white"></i>
+                </a>
+                <a href="https://www.facebook.com/" target="_blank" class="w-10 h-10 bg-red-600 rounded-full flex items-center justify-center hover:bg-red-700 transition">
+                    <i class="fab fa-facebook-f text-white"></i>
+                </a>
+            </div>
+        </div>
+        
+        <div class="border-t border-gray-800 mt-8 pt-8 text-center">
+            <p class="text-gray-400" id="copyright">© 2025 DR Real Estate - Daisy Rossi & Associés. Tous droits réservés.</p>
+        </div>
+    </div>
+</footer>
+
+<script>
+// Translations object
+const translations = {
+    fr: {
+        heroTitle: "Gestion Locative de Prestige",
+        heroSubtitle: "Votre partenaire de confiance sur la Côte d'Azur",
+        offer1: "✓ État des lieux offert",
+        offer2: "✓ Garantie Loyers Impayés (GLI)",
+        offer3: "✓ Frais négociation offerts",
+        quoteButton: "Demander un devis gratuit",
+        servicesTitle: "Nos Services de Gestion Locative",
+        servicesSubtitle: "Une gestion humaine, sur-mesure et réactive avec une expertise locale pointue",
+        service1Title: "Estimation & Valorisation",
+        service1Desc: "Estimation précise et valorisation optimale de votre bien",
+        service2Title: "Sélection Locataires",
+        service2Desc: "Sélection rigoureuse basée sur étude de solvabilité et garanties",
+        service3Title: "Rédaction du Bail",
+        service3Desc: "État des lieux conformes à la législation, réalisés avec soin",
+        service4Title: "Marketing Premium",
+        service4Desc: "Photos professionnelles, diffusion sur les meilleurs portails",
+        service5Title: "Gestion Financière",
+        service5Desc: "Appels de loyers, quittances, relances et suivi comptable",
+        service6Title: "Suivi Technique",
+        service6Desc: "Gestion des travaux, dépannages et révision annuelle du loyer",
+        aboutTitle: "Qui sommes-nous ?",
+        aboutText: "Daisy Rossi Immobilier, agence indépendante à Roquebrune-Cap-Martin, est votre partenaire de confiance pour la gestion de biens sur la Côte d'Azur.",
+        value1Title: "Gestion Humaine",
+        value1Desc: "Sur-mesure et réactive",
+        value2Title: "Expertise Locale",
+        value2Desc: "Connaissance pointue",
+        value3Title: "Réseau Pro",
+        value3Desc: "Artisans, experts, juristes",
+        value4Title: "Transparence",
+        value4Desc: "Communication totale",
+        specialBadge: "⭐ OFFRE SPÉCIALE RENTRÉE 2025",
+        specialTitle: "Offre Privilégiée - Valable jusqu'au 30 novembre 2025",
+        specialDescription: "Pour toute signature d'un mandat de location accompagné d'un mandat de gestion locative",
+        specialIncluded: "Tout inclus dans votre offre :",
+        special1: "Estimation précise et valorisation",
+        special2: "Sélection rigoureuse des locataires",
+        special3: "Rédaction du bail et état des lieux",
+        special4: "Photos professionnelles",
+        special5: "Gestion administrative complète",
+        special6: "Suivi technique et relation locataire",
+        specialButton: "Profiter de l'offre maintenant",
+        contactTitle: "Contactez-nous",
+        contactSubtitle: "Prêt à confier la gestion de votre bien à des experts ? Contactez-nous dès aujourd'hui pour un devis personnalisé.",
+        phoneLabel: "Téléphone",
+        addressLabel: "Adresse",
+        websiteLabel: "Site Web",
+        finalButton: "Appelez maintenant pour votre devis gratuit",
+        copyright: "© 2025 DR Real Estate - Daisy Rossi & Associés. Tous droits réservés."
+    },
+    en: {
+        heroTitle: "Premium Rental Management",
+        heroSubtitle: "Your trusted partner on the French Riviera",
+        offer1: "✓ Free property inspection",
+        offer2: "✓ Rental Guarantee Insurance",
+        offer3: "✓ Free negotiation fees",
+        quoteButton: "Request free quote",
+        servicesTitle: "Our Rental Management Services",
+        servicesSubtitle: "Human, tailor-made and responsive management with sharp local expertise",
+        service1Title: "Valuation & Assessment",
+        service1Desc: "Precise estimation and optimal valorization of your property",
+        service2Title: "Tenant Selection",
+        service2Desc: "Rigorous selection based on solvency study and guarantees",
+        service3Title: "Lease Drafting",
+        service3Desc: "Property inspections compliant with legislation, carried out with care",
+        service4Title: "Premium Marketing",
+        service4Desc: "Professional photos, distribution on the best portals",
+        service5Title: "Financial Management",
+        service5Desc: "Rent calls, receipts, reminders and accounting monitoring",
+        service6Title: "Technical Follow-up",
+        service6Desc: "Work management, troubleshooting and annual rent revision",
+        aboutTitle: "Who are we?",
+        aboutText: "Daisy Rossi Real Estate, independent agency in Roquebrune-Cap-Martin, is your trusted partner for property management on the French Riviera.",
+        value1Title: "Human Management",
+        value1Desc: "Tailor-made and responsive",
+        value2Title: "Local Expertise",
+        value2Desc: "Sharp knowledge",
+        value3Title: "Pro Network",
+        value3Desc: "Craftsmen, experts, lawyers",
+        value4Title: "Transparency",
+        value4Desc: "Total communication",
+        specialBadge: "⭐ SPECIAL OFFER 2025",
+        specialTitle: "Exclusive Offer - Valid until November 30, 2025",
+        specialDescription: "For any rental mandate signature accompanied by a management mandate",
+        specialIncluded: "Everything included in your offer:",
+        special1: "Precise estimation and valuation",
+        special2: "Rigorous tenant selection",
+        special3: "Lease drafting and property inspection",
+        special4: "Professional photography",
+        special5: "Complete administrative management",
+        special6: "Technical follow-up and tenant relations",
+        specialButton: "Take advantage of the offer now",
+        contactTitle: "Contact us",
+        contactSubtitle: "Ready to entrust the management of your property to experts? Contact us today for a personalized quote.",
+        phoneLabel: "Phone",
+        addressLabel: "Address",
+        websiteLabel: "Website",
+        finalButton: "Call now for your free quote",
+        copyright: "© 2025 DR Real Estate - Daisy Rossi & Associates. All rights reserved."
+    },
+    it: {
+        heroTitle: "Gestione Immobiliare Premium",
+        heroSubtitle: "Il vostro partner di fiducia sulla Costa Azzurra",
+        offer1: "✓ Sopralluogo gratuito",
+        offer2: "✓ Assicurazione Garanzia Affitti",
+        offer3: "✓ Commissioni negoziazione offerte",
+        quoteButton: "Richiedi preventivo gratuito",
+        servicesTitle: "I Nostri Servizi di Gestione Immobiliare",
+        servicesSubtitle: "Gestione umana, su misura e reattiva con una competenza locale affinata",
+        service1Title: "Stima & Valutazione",
+        service1Desc: "Stima precisa e valorizzazione ottimale del vostro immobile",
+        service2Title: "Selezione Inquilini",
+        service2Desc: "Selezione rigorosa basata su studio di solvibilità e garanzie",
+        service3Title: "Redazione Contratto",
+        service3Desc: "Sopralluoghi conformi alla legislazione, realizzati con cura",
+        service4Title: "Marketing Premium",
+        service4Desc: "Foto professionali, diffusione sui migliori portali",
+        service5Title: "Gestione Finanziaria",
+        service5Desc: "Richieste di affitto, ricevute, solleciti e monitoraggio contabile",
+        service6Title: "Assistenza Tecnica",
+        service6Desc: "Gestione lavori, riparazioni e revisione annuale affitto",
+        aboutTitle: "Chi siamo?",
+        aboutText: "Daisy Rossi Immobiliare, agenzia indipendente a Roquebrune-Cap-Martin, è il vostro partner di fiducia per la gestione immobiliare sulla Costa Azzurra.",
+        value1Title: "Gestione Umana",
+        value1Desc: "Su misura e reattiva",
+        value2Title: "Competenza Locale",
+        value2Desc: "Conoscenza approfondita",
+        value3Title: "Rete Pro",
+        value3Desc: "Artigiani, esperti, avvocati",
+        value4Title: "Trasparenza",
+        value4Desc: "Comunicazione totale",
+        specialBadge: "⭐ OFFERTA SPECIALE 2025",
+        specialTitle: "Offerta Esclusiva - Valida fino al 30 novembre 2025",
+        specialDescription: "Per ogni firma di mandato di locazione accompagnata da un mandato di gestione",
+        specialIncluded: "Tutto incluso nella vostra offerta:",
+        special1: "Stima precisa e valutazione",
+        special2: "Selezione rigorosa inquilini",
+        special3: "Redazione contratto e sopralluogo",
+        special4: "Fotografia professionale",
+        special5: "Gestione amministrativa completa",
+        special6: "Assistenza tecnica e rapporti inquilini",
+        specialButton: "Approfitta dell'offerta ora",
+        contactTitle: "Contattaci",
+        contactSubtitle: "Pronto ad affidare la gestione del vostro immobile agli esperti? Contattateci oggi per un preventivo personalizzato.",
+        phoneLabel: "Telefono",
+        addressLabel: "Indirizzo",
+        websiteLabel: "Sito Web",
+        finalButton: "Chiama ora per il tuo preventivo gratuito",
+        copyright: "© 2025 DR Real Estate - Daisy Rossi & Associati. Tutti i diritti riservati."
+    },
+    ru: {
+        heroTitle: "Премиальное Управление Недвижимостью",
+        heroSubtitle: "Ваш надёжный партнёр на Лазурном Берегу",
+        offer1: "✓ Бесплатный осмотр",
+        offer2: "✓ Страхование Гарантии Арендной Платы",
+        offer3: "✓ Бесплатные комиссии за переговоры",
+        quoteButton: "Запросить бесплатную оценку",
+        servicesTitle: "Наши Услуги по Управлению Недвижимостью",
+        servicesSubtitle: "Человеческое, индивидуальное и оперативное управление с острой местной экспертизой",
+        service1Title: "Оценка и Оценивание",
+        service1Desc: "Точная оценка и оптимальная стоимость вашей недвижимости",
+        service2Title: "Отбор Арендаторов",
+        service2Desc: "Строгий отбор на основе исследования платежеспособности и гарантий",
+        service3Title: "Составление Договора",
+        service3Desc: "Осмотры недвижимости в соответствии с законодательством, проведенные с заботой",
+        service4Title: "Премиум Маркетинг",
+        service4Desc: "Профессиональные фотографии, размещение на лучших порталах",
+        service5Title: "Финансовое Управление",
+        service5Desc: "Вызовы арендной платы, квитанции, напоминания и учетный мониторинг",
+        service6Title: "Техническое Сопровождение",
+        service6Desc: "Управление работами, устранение неисправностей и ежегодная корректировка арендной платы",
+        aboutTitle: "Кто мы?",
+        aboutText: "Daisy Rossi Недвижимость, независимое агентство в Рокебрюн-Кап-Мартен, является вашим надежным партнером по управлению недвижимостью на Лазурном Берегу.",
+        value1Title: "Человеческое Управление",
+        value1Desc: "Индивидуальное и оперативное",
+        value2Title: "Местная Экспертиза",
+        value2Desc: "Глубокие знания",
+        value3Title: "Профессиональная Сеть",
+        value3Desc: "Мастера, эксперты, юристы",
+        value4Title: "Прозрачность",
+        value4Desc: "Полная коммуникация",
+        specialBadge: "⭐ СПЕЦИАЛЬНОЕ ПРЕДЛОЖЕНИЕ 2025",
+        specialTitle: "Эксклюзивное Предложение - Действительно до 30 ноября 2025",
+        specialDescription: "При подписании любого мандата на аренду в сопровождении мандата на управление",
+        specialIncluded: "Все включено в ваше предложение:",
+        special1: "Точная оценка и оценивание",
+        special2: "Строгий отбор арендаторов",
+        special3: "Составление договора и осмотр недвижимости",
+        special4: "Профессиональная фотография",
+        special5: "Полное административное управление",
+        special6: "Техническое сопровождение и отношения с арендаторами",
+        specialButton: "Воспользуйтесь предложением сейчас",
+        contactTitle: "Свяжитесь с нами",
+        contactSubtitle: "Готовы доверить управление вашей недвижимостью экспертам? Свяжитесь с нами сегодня для персонализированной оценки.",
+        phoneLabel: "Телефон",
+        addressLabel: "Адрес",
+        websiteLabel: "Веб-сайт",
+        finalButton: "Звоните сейчас для вашей бесплатной оценки",
+        copyright: "© 2025 DR Real Estate - Daisy Rossi & Партнёры. Все права защищены."
+    }
+};
+
+const languageFlags = {
+    fr: '🇫🇷 FR',
+    en: '🇬🇧 EN',
+    it: '🇮🇹 IT',
+    ru: '🇷🇺 RU'
+};
+
+function changeLanguage(lang) {
+    // Update URL without reloading
+    const url = new URL(window.location.href);
+    url.searchParams.set('lang', lang);
+    window.history.replaceState({}, '', url);
+
+    // Update current language flag
+    const currentLangEl = document.getElementById('currentLang');
+    if (currentLangEl) currentLangEl.textContent = languageFlags[lang] || languageFlags['fr'];
+
+    // Update all translatable elements
+    const translation = translations[lang] || translations['fr'];
+    Object.keys(translation).forEach(key => {
+        const el = document.getElementById(key);
+        if (el) {
+            if (key.toLowerCase().includes('button')) {
+                // Preserve icon if present
+                const icon = el.querySelector('i');
+                const iconHtml = icon ? icon.outerHTML : '';
+                el.innerHTML = `${iconHtml}<span>${translation[key]}</span>`;
+            } else {
+                el.textContent = translation[key];
+            }
+        }
+    });
+}
+
+// Detect language from URL or browser, fallback to French
+function detectLanguage() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const langParam = urlParams.get('lang');
+    if (langParam && translations[langParam]) return langParam;
+    const browserLang = (navigator.language || navigator.userLanguage || 'fr').slice(0, 2);
+    if (translations[browserLang]) return browserLang;
+    return 'fr';
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    changeLanguage(detectLanguage());
+});
+
+// Smooth scrolling for internal links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    });
+});
+</script>
+
+</body>
+</html>
