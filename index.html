@@ -202,20 +202,20 @@
             <h1 class="font-playfair text-5xl md:text-6xl font-bold text-gray-900 mb-6" id="heroTitle">
                 Gestion Locative 
             </h1>
-            <p class="text-xl md:text-2xl text-gray-700 mb-8" id="heroSubtitle">
-                Votre partenaire de confiance sur la Côte d'Azur
-            </p>
-            <div class="flex flex-col md:flex-row gap-4 justify-center items-center mb-12">
-                <div class="bg-red-50 px-6 py-3 rounded-full border border-red-200">
-                    <span class="text-red-600 font-semibold" id="offer1">✓ Roquebrune-Cap-Martin  </span>
+                <p class="text-xl md:text-2xl text-gray-700 mb-4" id="heroSubtitle">
+                    Votre partenaire de confiance sur la Côte d'Azur
+                </p>
+                <div class="flex flex-col md:flex-row gap-4 justify-center items-center mb-8">
+                    <div class="bg-white border-2 border-red-400 rounded-xl px-8 py-4 shadow hover:shadow-lg transition w-64 mx-2">
+                        <span class="block text-base font-semibold text-red-700 text-center">Roquebrune Cap Martin</span>
+                    </div>
+                    <div class="bg-white border-2 border-red-400 rounded-xl px-8 py-4 shadow hover:shadow-lg transition w-64 mx-2">
+                        <span class="block text-lg font-bold text-red-700 text-center">Menton</span>
+                    </div>
+                    <div class="bg-white border-2 border-red-400 rounded-xl px-8 py-4 shadow hover:shadow-lg transition w-64 mx-2">
+                        <span class="block text-lg font-bold text-red-700 text-center">Côte d'Azur</span>
+                    </div>
                 </div>
-                <div class="bg-red-50 px-6 py-3 rounded-full border border-red-200">
-                    <span class="text-red-600 font-semibold" id="offer2">✓ Menton </span>
-                </div>
-                <div class="bg-red-50 px-6 py-3 rounded-full border border-red-200">
-                    <span class="text-red-600 font-semibold" id="offer3">✓ Côted'Azur... </span>
-                </div>
-            </div>
             <a href="tel:+33698273475" class="btn-premium inline-flex items-center space-x-3 text-decoration-none" id="quoteButton">
                 <i class="fas fa-phone"></i>
                 <span>Demander un devis gratuit</span>
@@ -408,10 +408,22 @@
                         <i class="fas fa-check-circle text-red-600"></i>
                         <span id="special7">Frais d'entremise et de négociation offerts</span>
                     </div>
+                        <div class="flex items-center space-x-3">
+                            <i class="fas fa-check-circle text-red-600"></i>
+                            <span id="special8">État des lieux offert</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <i class="fas fa-check-circle text-red-600"></i>
+                            <span id="special9">Garantie Loyers Impayés (GLI)</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <i class="fas fa-check-circle text-red-600"></i>
+                            <span id="special10">Frais négociation offerts</span>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="mt-8">
+            <div class="mt-8 flex justify-center">
                 <a href="tel:+33698273475" class="btn-premium inline-flex items-center space-x-3 text-decoration-none">
                     <i class="fas fa-phone"></i>
                     <span id="specialButton">Profiter de l'offre maintenant</span>
@@ -776,4 +788,17 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 </script>
 
 </body>
+<!-- Avantages en bas de page -->
+<footer class="bg-gray-50 py-10 mt-10">
+    <div class="container mx-auto px-6">
+        <div class="max-w-2xl mx-auto">
+            <ul class="space-y-4 text-lg text-gray-800 font-semibold">
+                <li class="flex items-center"><i class="fas fa-check-circle text-red-600 mr-3"></i>État des lieux offert</li>
+                <li class="flex items-center"><i class="fas fa-check-circle text-red-600 mr-3"></i>Garantie Loyers Impayés (GLI)</li>
+                <li class="flex items-center"><i class="fas fa-check-circle text-red-600 mr-3"></i>Frais négociation offerts</li>
+            </ul>
+        </div>
+    </div>
+</footer>
 </html>
+
